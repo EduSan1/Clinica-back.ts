@@ -5,6 +5,7 @@ import * as cors from "cors"
 import router from "./routes"
 
 AppDataSource.initialize().then(async () => {
+    require('dotenv').config()
 
     const app = express()
 
@@ -12,8 +13,8 @@ AppDataSource.initialize().then(async () => {
     app.use(bodyParser.json())
     app.use("/", router)
 
-    app.listen(3001)
+    app.listen(process.env.PORT)
 
-    console.log(`Server has started on port 3001. Open http://localhost:3001`)
+    console.log(`Server has started on port ${process.env.PORT}. Open http://localhost:${process.env.PORT}`)
 
 }).catch(error => console.log(error))
